@@ -1,28 +1,34 @@
 <?php
-
-require ("partials/head.php");
-require ("partials/nav.php");
-require ("partials/banner.php");
-
+require("partials/head.php");
+require("partials/nav.php");
+require("partials/banner.php");
 ?>
 
 <main>
-    <div class="mx-auto max-w-5xl py-6 px-8 flex flex-col ">
-        <p class="text-3xl text-center"><?=$event['name'] ?></p>      
-        <p class="text-xl"><?=$event['name'] ?></p>
-        <p> <?=$event['description'] ?></p>
-        <p> <?=$event['date'] ?></p>
-        <p class="text-red-500"> <?=$event['time'] ?></p>
-        <p> <?=$event['type']?></p>
+    <div class="mx-auto max-w-5xl py-6 px-8 flex flex-col items-center gap-6">
+        <img src="images/events/<?= htmlspecialchars($event['imageURL']) ?>" alt="image of <?= htmlspecialchars($event['name']) ?>" class="w-full">
+        <div class="flex flex-col gap-6">
+            <?php
+            foreach ($event as $key => $value) {
+                if (in_array($key, ['id', 'imageURL'])) {
+                    continue;
+                }
+                $formatted_key = ucwords(str_replace('_', ' ', $key));
+                if ($key == 'time') {
+                    $time = new DateTime($value);
+                    $formatted_time = $time->format('g:i A');
+                    echo "<p class='text-xl'><span class='font-bold'>$formatted_key:</span> $formatted_time</p>";
+                } else {
+                    echo "<p class='text-xl'><span class='font-bold'>$formatted_key:</span> " . htmlspecialchars($value) . "</p>";
+                }
+            }
+            ?>
+        </div>
 
-        <img src="/jem-center-php/images/<?=$event['imageURL'] ?>" alt="image of <?=$event['title'] ?>" class="w-1/2">
-        <a href="/jem-center-php/events" class="">Back to Events</a>
+        <a href="/jem-center-php/events" class="py-4 p-10 bg-slate-500 text-white text-3xl text-center  ">Back to Events</a>
     </div>
 </main>
 
-
 <?php
-
 require 'partials/footer.php';
-
 ?>

@@ -4,7 +4,7 @@
 
 @layer components {
     nav a[aria-current='page'] {
-        @apply border-4 bg-orange-950 leading-[3] min-h-[45px] block text-slate-50 text-center;
+        @apply border-4 bg-slate-950 leading-[3] min-h-[45px] block text-slate-50 text-center;
     }
 
     .btn {

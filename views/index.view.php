@@ -8,44 +8,105 @@ require('partials/banner.php');
 
 ?>
 
-<main>
-    <div class="mx-auto max-w-5xl py-6 px-8 test_class">
-        <p>Welcome to the home page.</p>
-    </div>
 
-        <ul class="py-10">
-            <?php
-            foreach ($animals as $animal) {
-                echo "<li>"
-                    . "<strong>" . htmlspecialchars($animal['common_name']) . "; </strong>"
-                    . htmlspecialchars($animal['scientific_name'])
-                    . "<img src='images/animals/" . htmlspecialchars($animal['imageURL']) . "' alt='image of " . htmlspecialchars($animal['common_name']) . "' class='w-1/2'>"
-                    . "<div class='my-4'>" . htmlspecialchars($animal["description"]) . "</div>"
-                    . "<div>" . htmlspecialchars($animal["classification"]) . "</div>";
-            }
-            ?>
-        </ul>
+<?php
 
-        <h3 class="text-red-500 text-5xl">Events</h3>
-    <ul class="flex flex-col">
-        
-        <?php 
-                    foreach ($events as $event) {
-            $time = new DateTime($event['time']);
-            $formattedTime = $time->format('g:i A'); 
-            
+$animalsData = [];
+foreach ($animals as $animal) {
+    $commonName = htmlspecialchars($animal['common_name']);
+    $imageURL = htmlspecialchars($animal['imageURL']);
+    $scientificName = htmlspecialchars($animal['scientific_name']);
+    $description = htmlspecialchars($animal['description']);
+    $classification = htmlspecialchars($animal['classification']);
 
-            echo "<img src='images/events/" . htmlspecialchars($event['imageURL']) . "' alt='image of " . htmlspecialchars($event['name']) . "' class='w-1/2'>"
-                . "<li><strong>" . htmlspecialchars($event['name']) . "</strong></li>"
-                . "<li>" . htmlspecialchars($event['description']) . "</li>"
-                . "<li>" . htmlspecialchars($event['date']) . "</li>"
-                . "<li>" . htmlspecialchars($formattedTime) . "</li>"
-                . "<li>" . htmlspecialchars($event['location']) . "</li>";
-            }
+    $animalsData[] = [
+        'commonName' => $commonName,
+        'scientificName' => $scientificName,
+        'imageURL' => $imageURL,
+        'description' => $description,
+        'classification' => $classification
+    ];
+}
 
-            ?>
-    </ul>
+// Process events data
+$eventsData = [];
+foreach ($events as $event) {
+    $time = new DateTime($event['time']);
+    $formattedTime = $time->format('g:i A');
+
+    $name = htmlspecialchars($event['name']);
+    $imageURL = htmlspecialchars($event['imageURL']);
+    $description = htmlspecialchars($event['description']);
+    $date = htmlspecialchars($event['date']);
+    $location = htmlspecialchars($event['location']);
+
+    $eventsData[] = [
+        'name' => $name,
+        'imageURL' => $imageURL,
+        'description' => $description,
+        'date' => $date,
+        'formattedTime' => $formattedTime,
+        'location' => $location
+    ];
+}
+?>
+
+
+<main class=" flex">
+
+
+    <div class="mx-auto">
+        <section class="grid grid-cols-3 gap-4 ">
+            <?php foreach ($animalsData as $animal) : ?>
+                <div class="flex flex-col justify-center items-center">
+                    <div class="flex items-center justify-center py-10 w-4/5">
+                        <img src='images/animals/<?= $animal['imageURL']; ?>' alt='image of <?= $animal['commonName']; ?>' class="w-full h-[18rem]">
+                    </div>
+                    <div class="flex flex-col items-center justify-center w-3/5">
+                        <p class="text-3xl"><?= $animal['commonName']; ?> </p>
+                        <p><?= $animal['scientificName']; ?></p>
+                        <div class='my-4'>
+                            <?php
+                            // Limit the description to 100 characters
+                            echo substr($animal['description'], 0, 100);
+                            // Add an ellipsis if the description is longer than 100 characters
+                            if (strlen($animal['description']) > 100) echo '...';
+                            ?>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </section>
+        <div class="py-4 p-10 bg-slate-500 text-white text-3xl text-center w-full">
+            <a href="/jem-center-php/animals" class="">More Animals</a>
+        </div>
+
+        <h3 class="text-slate-500 text-5xl text-center my-10">Events</h3>
+        <section class="grid grid-cols-3 gap-4">
+            <?php foreach ($eventsData as $event) : ?>
+                <div class="flex flex-col items-center justify-center p-4">
+                    <img src='images/events/<?= $event['imageURL']; ?>' alt='image of <?= $event['name']; ?>' class='w-full h-[18rem]'>
+                    <div class="text-center py-4">
+                        <p><strong><?= $event['name']; ?></strong></p>
+                        <div class='my-4'>
+                            <?php
+                            echo substr($event['description'], 0, 100);
+                            if (strlen($event['description']) > 100) echo '...';
+                            ?>
+                            <p><?= $event['date']; ?></p>
+                            <p><?= $event['formattedTime']; ?></p>
+                            <p><?= $event['location']; ?></p>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+
+        </section>
+        <div class="py-4 p-10 bg-slate-500 text-white text-3xl text-center w-full">
+            <a href="/jem-center-php/events" class="">More Events</a>
+        </div>
 </main>
+
 
 
 <?php
