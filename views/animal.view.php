@@ -17,7 +17,6 @@ require('partials/banner.php');
                 if ($key == 'id' || $key == 'imageURL') {
                     continue;
                 }
-
                 if ($key == 'date_of_arrival') {
                     $date = DateTime::createFromFormat('Y-m-d', $value);
                     $formatted_date = $date ? $date->format('j F,Y') : 'Invalid Date';

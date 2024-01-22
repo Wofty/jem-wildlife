@@ -67,9 +67,7 @@ foreach ($events as $event) {
                         <p><?= $animal['scientificName']; ?></p>
                         <div class='my-4'>
                             <?php
-                            // Limit the description to 100 characters
                             echo substr($animal['description'], 0, 100);
-                            // Add an ellipsis if the description is longer than 100 characters
                             if (strlen($animal['description']) > 100) echo '...';
                             ?>
                         </div>

@@ -590,24 +590,6 @@ nav a[aria-current='page'] {
   color: rgb(248 250 252 / var(--tw-text-opacity));
 }
 
-.btn {
-  display: block;
-  height: -moz-fit-content;
-  height: fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  border-radius: 0.375rem;
-  --tw-bg-opacity: 1;
-  background-color: rgb(132 99 88 / var(--tw-bg-opacity));
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  font-weight: 600;
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
 .sr-only {
   position: absolute;
   width: 1px;
@@ -877,20 +859,16 @@ nav a[aria-current='page'] {
   height: 18rem;
 }
 
-.h-auto {
-  height: auto;
-}
-
-.h-\[10rem\] {
-  height: 10rem;
-}
-
 .h-\[22rem\] {
   height: 22rem;
 }
 
 .h-\[24rem\] {
   height: 24rem;
+}
+
+.h-auto {
+  height: auto;
 }
 
 .min-h-\[45px\] {
@@ -913,6 +891,10 @@ nav a[aria-current='page'] {
   width: 80%;
 }
 
+.w-\[70\%\] {
+  width: 70%;
+}
+
 .w-\[this-is\\\\\] {
   width: this-is\\;
 }
@@ -927,10 +909,6 @@ nav a[aria-current='page'] {
 
 .w-full {
   width: 100%;
-}
-
-.w-\[70\%\] {
-  width: 70%;
 }
 
 .max-w-5xl {
@@ -1469,10 +1447,6 @@ nav a[aria-current='page'] {
 
 .justify-items-stretch {
   justify-items: stretch;
-}
-
-.gap-10 {
-  gap: 2.5rem;
 }
 
 .gap-4 {
@@ -2734,11 +2708,6 @@ nav a[aria-current='page'] {
 
 .focus-within\:ring-inset:focus-within {
   --tw-ring-inset: inset;
-}
-
-.focus-within\:ring-indigo-600:focus-within {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(79 70 229 / var(--tw-ring-opacity));
 }
 
 .focus-within\:ring-slate-600:focus-within {

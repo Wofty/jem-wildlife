@@ -6,5 +6,5 @@ return [
         'dbname' => 'jem-center-php',
         'charset' => 'utf8mb4'
     ],
-    //
+
 ];
